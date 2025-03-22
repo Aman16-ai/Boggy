@@ -1,7 +1,8 @@
 #include "HttpServer.h"
 #include <fstream>
 #include <sstream>
-
+#include "Response.h"
+#include "Request.h"
 void send_response(int client_socket, const std::string& content, const std::string& content_type) {
     std::ostringstream oss;
     oss << "HTTP/1.1 200 OK\r\n"
@@ -56,6 +57,10 @@ void HttpServer::handle_client(int client_socket) {
     
     */
 
+    Request req;
+    req.parse(request);
+    req.logRequest();
+
 
     // Check if it's a GET request
     if (request.substr(0, 3) == "GET") {
@@ -88,7 +93,9 @@ void HttpServer::handle_client(int client_socket) {
 
         // Send the response
         if (!content.empty()) {
-            send_response(client_socket, content, content_type);
+            // send_response(client_socket, content, content_type);
+            Response res(client_socket);
+            res.send_response(content,content_type);
         } else {
             // If the file was not found, send a 404 response
             std::string not_found = "HTTP/1.1 404 Not Found\r\n"

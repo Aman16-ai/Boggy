@@ -8,7 +8,10 @@
 #include <sstream>
 #include "Response.h"
 
-Response::Response(int client_socket, const std::string& content, const std::string& content_type) {
+Response::Response(int socket):client_socket(socket) {
+
+}
+void Response::send_response(const std::string& content, const std::string& content_type) {
     std::ostringstream oss;
     oss << "HTTP/1.1 200 OK\r\n"
         << "Content-Type: " << content_type << "\r\n"
@@ -16,6 +19,6 @@ Response::Response(int client_socket, const std::string& content, const std::str
         << "Connection: close\r\n"
         << "\r\n"
         << content;
-    
-    send(client_socket, oss.str().c_str(), oss.str().length(), 0);
+
+    send(this->client_socket, oss.str().c_str(), oss.str().length(), 0);
 }
