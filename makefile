@@ -14,7 +14,8 @@ BIN_DIR = bin
 SRCS = main.cpp \
        $(SRC_DIR)/HttpServer.cpp \
        $(SRC_DIR)/Response.cpp \
-	   ${SRC_DIR}/Request.cpp
+	   ${SRC_DIR}/Request.cpp \
+	   $(SRC_DIR)/Router.cpp
 
 # Object files
 OBJS = $(patsubst %.cpp,$(BUILD_DIR)/%.o,$(SRCS))

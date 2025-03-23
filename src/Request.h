@@ -15,6 +15,10 @@ class Request {
     void parse(std::string buffer);
     void line(std::string reqline);
     void logRequest();
+
+    std::string getMethod();
+    std::string getpath();
+    std::string getHttpVersion();
 };
 
 #endif
