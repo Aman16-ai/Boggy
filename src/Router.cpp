@@ -6,9 +6,10 @@
 #include <iostream>
 #include <stdexcept>
 
-void Router::get(std::string method, std::string path, std::function<void(Request &req, Response &res)> handler)
+
+void Router::get(std::string path, std::function<void(Request &req, Response &res)> handler)
 {
-    routes[method][path] = handler;
+    routes["GET"][path] = handler;
 }
 
 void Router::execute(std::string method, std::string path, Request &req, Response &res)

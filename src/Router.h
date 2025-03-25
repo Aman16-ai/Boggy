@@ -9,7 +9,7 @@ class Router
 {
 
 public:
-    void get(std::string method, std::string path, std::function<void(Request &req, Response &res)> handler);
+    void get(std::string path, std::function<void(Request &req, Response &res)> handler);
 
     void execute(std::string method, std::string path, Request &req, Response &res);
 

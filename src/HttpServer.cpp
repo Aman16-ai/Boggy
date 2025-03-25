@@ -129,10 +129,10 @@ void HttpServer::setRouter(Router router)
 {
     this->router = router;
 }
-void HttpServer::get(std::string method, std::string path, std::function<void(Request &req, Response &res)> handler)
+void HttpServer::get(std::string path, std::function<void(Request &req, Response &res)> handler)
 {
 
-    this->router.get(method, path, handler);
+    this->router.get(path, handler);
 }
 
 void HttpServer::listenServer()

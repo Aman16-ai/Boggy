@@ -24,7 +24,7 @@ public:
     void setRouter(Router router);
     void listenServer();
     void handle_client(int client_socket);
-    void get(std::string method, std::string path, std::function<void(Request &req, Response &res)>);
+    void get(std::string path, std::function<void(Request &req, Response &res)>);
 };
 
 #endif // HTTP_SERVER_H
